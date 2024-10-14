@@ -1,25 +1,55 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Tab, Tabs, Container, Navbar } from 'react-bootstrap';
+import Home from './components/Home';
+import Education from './components/Education';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+import Footer from './components/Footer'; 
 import './App.css';
 
-function App() {
+const App = () => {
+  const [activeKey, setActiveKey] = useState('home');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+ 
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#">Naveen M</Navbar.Brand>
+          <Navbar.Brand href="#" id="navbar-nav">17 November, 2001</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <main>
+        <Container>
+          <Tabs
+            id="controlled-tabs"
+            activeKey={activeKey}
+            onSelect={(k) => setActiveKey(k)}
+            className="mb-3"
+            transition={true}
+          >
+            <Tab eventKey="home" title="Home">
+              <Home />
+            </Tab>
+            <Tab eventKey="education" title="Education">
+              <Education />
+            </Tab>
+            <Tab eventKey="skills" title="Skills">
+              <Skills />
+            </Tab>
+            <Tab eventKey="projects" title="Projects">
+              <Projects />
+            </Tab>
+            <Tab eventKey="contact" title="Contact">
+              <Contact />
+            </Tab>
+          </Tabs>
+        </Container>
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
